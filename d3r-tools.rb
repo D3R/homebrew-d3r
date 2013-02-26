@@ -6,15 +6,10 @@ class D3rTools < Formula
 
   depends_on 'php54'
   depends_on 'wget'
-  # depends_on 'git'
 
   def install
-    system "chmod -R 770 ."
-
     script_base_remote = "http://s3.apt.d3r.com/scripts"
-
-    (sbin).mkpath
-    scripts = [ "d3r-scripts.functions", "d3r-apache2", "d3r-cron", "d3r-fpm", "d3r-nginx" ]
+    scripts = ["d3r-scripts.functions", "d3r-apache2", "d3r-cron", "d3r-fpm", "d3r-nginx"]
     scripts.each do |script|
       system "wget -q -O #{sbin}/#{script} #{script_base_remote}/#{script}"
     end
@@ -27,10 +22,8 @@ class D3rTools < Formula
     system "mv -f Version.php.tmp src/lib/D3R/Version.php"
 
     prefix.install Dir['src/*']
-    
-    system "rm #{prefix}/test.php"
 
-    (var).mkpath
+    system "rm #{prefix}/test.php"
 
   end
 
@@ -58,7 +51,7 @@ class D3rTools < Formula
       <key>WorkingDirectory</key>
       <string>/usr/local/bin/d3r-tools</string>
       <key>StandardErrorPath</key>
-      <string>#{var}/d3r-tools/d3r-tools.log</string>
+      <string>#{var}/log/d3r-tools.log</string>
     </dict>
     </plist>
     EOS
