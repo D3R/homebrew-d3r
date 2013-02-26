@@ -19,7 +19,7 @@ class D3rTools < Formula
     system "mv -f src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
     system "mv -f package.osx.config.php src/lib/config.php"
 
-    system "VERSION=`git rev-parse HEAD`;cat src/lib/D3R/Version.php | sed \"s/%VERSION%/$VERSION/\" > Version.php.tmp"
+    system 'VERSION=`git rev-parse HEAD`;cat src/lib/D3R/Version.php | sed "s/%VERSION%/$VERSION/" > Version.php.tmp'
     system "cp -f Version.php.tmp src/lib/D3R/Version.php"
 
     prefix.install Dir['src/*']
