@@ -15,16 +15,17 @@ class D3rTools < Formula
       system "wget -q -O #{sbin}/#{script} #{script_base_remote}/#{script}"
     end
 
-    system "mv -f src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
-    system "mv -f src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
-    system "mv -f package.osx.config.php src/lib/config.php"
+    system "mv src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
+    system "mv src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
+    system "mv package.osx.config.php src/lib/config.php"
 
-    system 'VERSION=`git rev-parse HEAD`;cat src/lib/D3R/Version.php | sed "s/%VERSION%/$VERSION/" > Version.php.tmp'
-    system "cp -f Version.php.tmp src/lib/D3R/Version.php"
+    system "cat src/lib/D3R/Version.php | sed \"s/%VERSION%/#{version}/\" > Version.php.tmp"
+    system "mv Version.php.tmp src/lib/D3R/Version.php"
 
     prefix.install Dir['src/*']
 
     system "rm #{prefix}/test.php"
+    # (var+"d3r-tools").mkpath
 
   end
 
@@ -39,7 +40,7 @@ class D3rTools < Formula
       <string>#{plist_name}</string>
       <key>ProgramArguments</key>
       <array>
-           <string>#{opt_prefix}/bin/php</string>
+           <string>#{HOMEBREW_PREFIX}/bin/php</string>
            <string>#{prefix}/receive.php</string>
            <string>nofork</string>
       </array>
@@ -50,7 +51,7 @@ class D3rTools < Formula
       <key>UserName</key>
       <string>#{`whoami`.chomp}</string>
       <key>WorkingDirectory</key>
-      <string>/usr/local/bin/d3r-tools</string>
+      <string>#{var}</string>
       <key>StandardErrorPath</key>
       <string>#{var}/log/d3r-tools.log</string>
     </dict>
