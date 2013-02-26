@@ -9,6 +9,7 @@ class D3rTools < Formula
 
   def install
     script_base_remote = "http://s3.apt.d3r.com/scripts"
+    (sbin).mkpath
     scripts = ["d3r-scripts.functions", "d3r-apache2", "d3r-cron", "d3r-fpm", "d3r-nginx"]
     scripts.each do |script|
       system "wget -q -O #{sbin}/#{script} #{script_base_remote}/#{script}"
