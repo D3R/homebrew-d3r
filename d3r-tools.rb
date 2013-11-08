@@ -8,19 +8,19 @@ class D3rTools < Formula
   depends_on 'mysql'
   depends_on 'nginx'
   depends_on 'tidy'
-  depends_on 'php55' => ['with-fpm', 'with-tidy']
-  depends_on 'php55-xdebug'
-  depends_on 'php55-mcrypt'
-  depends_on 'php55-oauth' => :recommended
-  depends_on 'php55-xcache' => :recommended
-  depends_on 'php55-memcache' => :optional
+  depends_on 'php54' => ['with-fpm', 'with-tidy']
+  depends_on 'php54-xdebug'
+  depends_on 'php54-mcrypt'
+  depends_on 'php54-oauth' => :recommended
+  depends_on 'php54-xcache' => :recommended
+  depends_on 'php54-memcache' => :optional
   depends_on 'elasticsearch' => :optional
 
   option 'without-redis', "Build without redis support"
 
   if build.with? 'redis'
     depends_on 'redis'
-    depends_on 'php55-redis'
+    depends_on 'php54-redis'
   end
 
   option 'without-imagemagick', "Build without imagemagick support"
@@ -28,7 +28,7 @@ class D3rTools < Formula
   if build.with? 'imagemagick'
     # depends_on 'imagemagick' => 'with-quantum-depth-8'
     depends_on 'imagemagick'
-    depends_on 'php55-imagick'
+    depends_on 'php54-imagick'
   end
 
   def install
