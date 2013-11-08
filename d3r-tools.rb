@@ -2,10 +2,34 @@ require 'formula'
 
 class D3rTools < Formula
   homepage 'https://d3r.beanstalkapp.com/d3r-tools'
-  head 'https://d3r.git.beanstalkapp.com/d3r-tools.git'
+  url 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :tag => 'v0.1'
+  head 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :branch => 'master'
 
-  depends_on 'php54'
-  depends_on 'wget'
+  depends_on 'mysql'
+  depends_on 'nginx'
+  depends_on 'tidy'
+  depends_on 'php55' => ['with-fpm', 'with-tidy']
+  depends_on 'php55-xdebug'
+  depends_on 'php55-mcrypt'
+  depends_on 'php55-oauth' => :recommended
+  depends_on 'php55-xcache' => :recommended
+  depends_on 'php55-memcache' => :optional
+  depends_on 'elasticsearch' => :optional
+
+  option 'without-redis', "Build without redis support"
+
+  if build.with? 'redis'
+    depends_on 'redis'
+    depends_on 'php55-redis'
+  end
+
+  option 'without-imagemagick', "Build without imagemagick support"
+
+  if build.with? 'imagemagick'
+    # depends_on 'imagemagick' => 'with-quantum-depth-8'
+    depends_on 'imagemagick'
+    depends_on 'php55-imagick'
+  end
 
   def install
     # script_base_remote = "http://s3.apt.d3r.com/scripts"
