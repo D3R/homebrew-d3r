@@ -6,9 +6,10 @@ class D3rTools < Formula
   head 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :branch => 'master'
 
   depends_on 'mysql'
+  depends_on 'wget'
   depends_on 'nginx'
-  depends_on 'tidy'
-  depends_on 'php54' => ['with-fpm', 'with-tidy']
+  depends_on 'php54' => ['with-fpm']
+  depends_on 'php54-tidy'
   depends_on 'php54-xdebug'
   depends_on 'php54-mcrypt'
   depends_on 'php54-oauth' => :recommended
