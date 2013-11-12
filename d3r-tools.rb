@@ -2,7 +2,7 @@ require 'formula'
 
 class D3rTools < Formula
   homepage 'https://d3r.beanstalkapp.com/d3r-tools'
-  url 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :tag => 'v0.1'
+  url 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :tag => 'v0.2'
   head 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :branch => 'master'
 
   depends_on 'mysql'
@@ -35,12 +35,15 @@ class D3rTools < Formula
   def install
     # script_base_remote = "http://s3.apt.d3r.com/scripts"
     (sbin).mkpath
-    scripts = ["d3r-scripts.functions", "d3r-cron", "d3r-fpm", "d3r-nginx"]
+    scripts = ["d3r-scripts.functions", "d3r-fpm", "d3r-nginx"]
     scripts.each do |script|
       # system "wget -q -O #{sbin}/#{script} #{script_base_remote}/#{script}"
-      system "cp src/scripts/#{script} #{sbin}/#{script}"
+      system "cp src/scripts/osx/#{script} #{sbin}/#{script}"
     end
 
+    # (bin).mkpath
+    # system "mv src/scripts/d3r-tools #{bin}/#{script}"
+    
     system "mv src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
     system "mv src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
     system "mv package.osx.config.php src/lib/config.php"
