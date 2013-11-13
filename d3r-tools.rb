@@ -46,10 +46,10 @@ class D3rTools < Formula
     
     system "mv src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
     system "mv src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
-    system "mv package.osx.config.php src/lib/config.php"
+    system "mv package.osx.config.php src/library/config.php"
 
-    system "cat src/lib/D3R/Version.php | sed \"s/%VERSION%/#{version}/\" > Version.php.tmp"
-    system "mv Version.php.tmp src/lib/D3R/Version.php"
+    system "cat src/library/D3R/Version.php | sed \"s/%VERSION%/#{version}/\" > Version.php.tmp"
+    system "mv Version.php.tmp src/library/D3R/Version.php"
 
     prefix.install Dir['src/*']
 
