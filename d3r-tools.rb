@@ -21,7 +21,7 @@ class D3rTools < Formula
   option 'without-redis', "Build without redis support"
   if build.with? 'redis'
     depends_on 'redis'
-    depends_on 'php54-redis'
+    depends_on 'php55-redis'
   end
 
   option 'without-imagemagick', "Build without imagemagick support"
