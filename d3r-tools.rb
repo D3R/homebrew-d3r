@@ -16,7 +16,7 @@ class D3rTools < Formula
   depends_on 'php55-xcache' => :optional
   depends_on 'php55-memcache' => :optional
   depends_on 'elasticsearch' => :optional
-  depends_on 'composer' => :recommended
+  # depends_on 'composer' => :recommended
 
   option 'without-redis', "Build without redis support"
   if build.with? 'redis'
