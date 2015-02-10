@@ -1,9 +1,8 @@
-require 'formula'
-
 class D3rTools < Formula
-  homepage 'https://d3r.beanstalkapp.com/d3r-tools'
-  url 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :tag => 'v0.2'
-  head 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :branch => 'master'
+  homepage "https://wiki.d3r.com/doku.php?id=d3r-tools-2"
+  url "http://d3r.assets.d3r.com/d3r-tools.phar"
+  version "2.0"
+  sha1 "343482db13238f0eee806915dc5ecb23dbdfb7db"
 
   depends_on 'mysql'
   depends_on 'wget'
@@ -16,7 +15,7 @@ class D3rTools < Formula
   depends_on 'php55-xcache' => :optional
   depends_on 'php55-memcache' => :optional
   depends_on 'elasticsearch' => :optional
-  # depends_on 'composer' => :recommended
+  depends_on 'composer'
 
   option 'without-redis', "Build without redis support"
   if build.with? 'redis'
@@ -32,64 +31,32 @@ class D3rTools < Formula
   end
 
   def install
-    # script_base_remote = "http://s3.apt.d3r.com/scripts"
-    (sbin).mkpath
-    scripts = ["d3r-scripts.functions", "d3r-fpm", "d3r-nginx"]
-    scripts.each do |script|
-      # system "wget -q -O #{sbin}/#{script} #{script_base_remote}/#{script}"
-      system "cp src/scripts/osx/#{script} #{sbin}/#{script}"
-    end
-
-    # (bin).mkpath
-    # system "mv src/scripts/d3r-tools #{bin}/#{script}"
-    
-    system "mv src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
-    system "mv src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
-    system "mv package.osx.config.php src/library/config.php"
-
-    system "cat src/library/D3R/Version.php | sed \"s/%VERSION%/#{version}/\" > Version.php.tmp"
-    system "mv Version.php.tmp src/library/D3R/Version.php"
-
-    prefix.install Dir['src/*']
-
-    system "rm #{prefix}/test.php"
-    # (var+"d3r-tools").mkpath
-
+    (bin).mkpath
+    (etc).mkpath
+    system "touch #{etc}/d3r-tools.ini"
+    system "mv d3r-tools.phar #{bin}/d3r-tools"
   end
 
-  plist_options :manual => 'd3r-tools'
-
-  def plist; <<-EOS.undent
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>ProgramArguments</key>
-      <array>
-           <string>#{HOMEBREW_PREFIX}/bin/php</string>
-           <string>#{prefix}/receive.php</string>
-           <string>nofork</string>
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>KeepAlive</key>
-      <true/>
-      <key>UserName</key>
-      <string>#{`whoami`.chomp}</string>
-      <key>WorkingDirectory</key>
-      <string>#{var}</string>
-      <key>StandardErrorPath</key>
-      <string>#{var}/log/d3r-tools.log</string>
-    </dict>
-    </plist>
-    EOS
+  test do
+    # `test do` will create, run in and delete a temporary directory.
+    #
+    # This test will fail and we won't accept that! It's enough to just replace
+    # "false" with the main program this formula installs, but it'd be nice if you
+    # were more thorough. Run the test with `brew test d3r`. Options passed
+    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
+    #
+    # The installed folder is not in the path, so use the entire path to any
+    # executables being tested: `system "#{bin}/program", "do", "something"`.
+    system "false"
   end
 
   def caveats; <<-EOS.undent
-    You must run "php #{prefix}/register-server.php" to begin
+    To get going run
+
+      d3r-tools update
+      d3r-tools config:setup
+
+    This will get you the latest version and set up your config.
     EOS
   end
-
 end
