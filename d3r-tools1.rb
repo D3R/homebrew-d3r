@@ -1,6 +1,6 @@
 require 'formula'
 
-class D3rTools < Formula
+class D3rTools1 < Formula
   homepage 'https://d3r.beanstalkapp.com/d3r-tools'
   url 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :tag => 'v0.2'
   head 'https://d3r.git.beanstalkapp.com/d3r-tools.git', :branch => 'master'
@@ -42,7 +42,7 @@ class D3rTools < Formula
 
     # (bin).mkpath
     # system "mv src/scripts/d3r-tools #{bin}/#{script}"
-    
+
     system "mv src/configurations/nginx/fpm-location.osx.conf src/configurations/nginx/fpm-location.conf"
     system "mv src/configurations/nginx/fpm-location-params.osx.conf src/configurations/nginx/fpm-location-params.conf"
     system "mv package.osx.config.php src/library/config.php"
