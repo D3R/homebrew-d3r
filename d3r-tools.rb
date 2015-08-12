@@ -1,6 +1,7 @@
 class D3rTools < Formula
   homepage "https://github.com/D3R/wiki/blob/master/d3r-tools-2.md"
   url "http://d3r.assets.d3r.com/d3r-tools.phar"
+  sha256 "1324deeb44035cb5c324742890c03f682b48c9f3c17889042c98ce2a27960d40"
   version "2.0.1"
 
   depends_on 'mysql'
