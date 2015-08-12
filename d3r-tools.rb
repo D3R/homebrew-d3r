@@ -1,7 +1,7 @@
 class D3rTools < Formula
   homepage "https://wiki.d3r.com/doku.php?id=d3r-tools-2"
   url "http://d3r.assets.d3r.com/d3r-tools.phar"
-  version "2.0"
+  version "2.0.1"
 
   depends_on 'mysql'
   depends_on 'wget'
