@@ -2,12 +2,11 @@ class D3rTools < Formula
   homepage "https://wiki.d3r.com/doku.php?id=d3r-tools-2"
   url "http://d3r.assets.d3r.com/d3r-tools.phar"
   version "2.0"
-  sha1 "343482db13238f0eee806915dc5ecb23dbdfb7db"
 
   depends_on 'mysql'
   depends_on 'wget'
   depends_on 'nginx'
-  depends_on 'php55' => ['with-fpm']
+  depends_on 'php55'
   depends_on 'php55-tidy'
   depends_on 'php55-xdebug'
   depends_on 'php55-mcrypt'
@@ -33,8 +32,8 @@ class D3rTools < Formula
   def install
     (bin).mkpath
     (etc).mkpath
-    system "touch #{etc}/d3r-tools.ini"
-    system "mv d3r-tools.phar #{bin}/d3r-tools"
+    touch "#{etc}/d3r-tools.ini"
+    mv "d3r-tools.phar" "#{bin}/d3r-tools"
   end
 
   test do
@@ -53,7 +52,7 @@ class D3rTools < Formula
   def caveats; <<-EOS.undent
     To get going run
 
-      d3r-tools update
+      d3r-tools self-update
       d3r-tools config:setup
 
     This will get you the latest version and set up your config.
