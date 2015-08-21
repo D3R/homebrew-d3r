@@ -25,29 +25,23 @@ class D3rTools < Formula
 
   option 'without-imagemagick', "Build without imagemagick support"
   if build.with? 'imagemagick'
-    depends_on 'imagemagick' => 'with-quantum-depth-8'
-    # depends_on 'imagemagick'
+    # depends_on 'imagemagick' => 'with-quantum-depth-8'
+    depends_on 'imagemagick'
     depends_on 'php55-imagick'
   end
 
   def install
     (bin).mkpath
     (etc).mkpath
-    touch "#{etc}/d3r-tools.ini"
-    mv "d3r-tools.phar" "#{bin}/d3r-tools"
+    libexec.install "d3r-tools.phar"
+    sh = libexec + "d3r-tools"
+    sh.write("#!/bin/sh\n\n/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off #{libexec}/d3r-tools.phar $*")
+    chmod 0755, sh
+    bin.install_symlink sh
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! It's enough to just replace
-    # "false" with the main program this formula installs, but it'd be nice if you
-    # were more thorough. Run the test with `brew test d3r`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    system "d3r-tools", "--version"
   end
 
   def caveats; <<-EOS.undent
