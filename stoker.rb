@@ -4,25 +4,22 @@ class Stoker < Formula
   # sha256 "1324deeb44035cb5c324742890c03f682b48c9f3c17889042c98ce2a27960d40"
   version "3.0.0"
 
-  # depends_on 'mysql'
-  # depends_on 'wget'
-  # depends_on 'nginx'
-  # depends_on 'php55'
-  # depends_on 'php55-tidy'
-  # depends_on 'php55-xdebug'
-  # depends_on 'php55-mcrypt'
-  # depends_on 'php55-oauth' => :recommended
-  # depends_on 'php55-xcache' => :optional
-  # depends_on 'php55-memcache' => :optional
-  # depends_on 'elasticsearch' => :optional
-  # depends_on 'composer'
-
-  # option 'without-redis', "Build without redis support"
-  # if build.with? 'redis'
+  # option 'without-stack', "Build with stack"
+  # if build.with? 'stack'
+  #   depends_on 'mysql'
+  #   depends_on 'wget'
+  #   depends_on 'nginx'
+  #   depends_on 'php55'
+  #   depends_on 'php55-tidy'
+  #   depends_on 'php55-xdebug'
+  #   depends_on 'php55-mcrypt'
+  #   depends_on 'php55-oauth' => :recommended
+  #   depends_on 'php55-xcache' => :optional
   #   depends_on 'redis'
   #   depends_on 'php55-redis'
+  #   depends_on 'elasticsearch' => :optional
+  #   depends_on 'composer'
   # end
-
   # option 'without-imagemagick', "Build without imagemagick support"
   # if build.with? 'imagemagick'
   #   # depends_on 'imagemagick' => 'with-quantum-depth-8'
