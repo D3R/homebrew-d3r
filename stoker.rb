@@ -11,16 +11,16 @@ class Stoker < Formula
     depends_on 'mysql'
     depends_on 'wget'
     depends_on 'homebrew/nginx/nginx-full' => 'with-status'
-    depends_on 'php55'
-    depends_on 'php55-tidy'
-    depends_on 'php55-xdebug'
-    depends_on 'php55-mcrypt'
-    depends_on 'php55-oauth' => :recommended
-    depends_on 'php55-xcache' => :optional
+    depends_on 'homebrew/php/php55'
+    depends_on 'homebrew/php/php55-tidy'
+    depends_on 'homebrew/php/php55-xdebug'
+    depends_on 'homebrew/php/php55-mcrypt'
+    depends_on 'homebrew/php/php55-oauth' => :recommended
+    depends_on 'homebrew/php/php55-xcache' => :optional
     depends_on 'redis'
-    depends_on 'php55-redis'
+    depends_on 'homebrew/php/php55-redis'
     depends_on 'imagemagick'
-    depends_on 'php55-imagick'
+    depends_on 'homebrew/php/php55-imagick'
     depends_on 'elasticsearch' => :optional
   end
 
