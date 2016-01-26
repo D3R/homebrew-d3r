@@ -10,7 +10,7 @@ class Stoker < Formula
   if build.with? 'stack'
     depends_on 'mysql'
     depends_on 'wget'
-    depends_on 'nginx-full' => 'with-status'
+    depends_on 'homebrew/nginx/nginx-full' => 'with-status'
     depends_on 'php55'
     depends_on 'php55-tidy'
     depends_on 'php55-xdebug'
