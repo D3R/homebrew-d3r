@@ -1,7 +1,7 @@
 class Stoker < Formula
   homepage "https://github.com/D3R/stoker"
   url "http://d3r.assets.d3r.com/stoker.phar"
-  version "0.1.7"
+  version "0.1.8"
 
   depends_on 'composer'
   depends_on 'wget'
@@ -11,16 +11,16 @@ class Stoker < Formula
     depends_on 'mysql'
     depends_on 'wget'
     depends_on 'homebrew/nginx/nginx-full' => 'with-status'
-    depends_on 'homebrew/php/php55'
-    depends_on 'homebrew/php/php55-tidy'
-    depends_on 'homebrew/php/php55-xdebug'
-    depends_on 'homebrew/php/php55-mcrypt'
-    depends_on 'homebrew/php/php55-oauth' => :recommended
-    depends_on 'homebrew/php/php55-xcache' => :optional
+    depends_on 'homebrew/php/php56'
+    depends_on 'homebrew/php/php56-tidy'
+    depends_on 'homebrew/php/php56-xdebug'
+    depends_on 'homebrew/php/php56-mcrypt'
+    depends_on 'homebrew/php/php56-oauth' => :recommended
+    depends_on 'homebrew/php/php56-xcache' => :optional
     depends_on 'redis'
-    depends_on 'homebrew/php/php55-redis'
+    depends_on 'homebrew/php/php56-redis'
     depends_on 'imagemagick'
-    depends_on 'homebrew/php/php55-imagick'
+    depends_on 'homebrew/php/php56-imagick'
     depends_on 'elasticsearch' => :optional
   end
 
