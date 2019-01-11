@@ -3,7 +3,14 @@ class PhpAT70 < Formula
   homepage "https://secure.php.net/"
   url "https://php.net/get/php-7.0.32.tar.xz/from/this/mirror"
   sha256 "ff6f62afeb32c71b3b89ecbd42950ef6c5e0c329cc6e1c58ffac47e6f1f883c4"
-  revision 2
+  revision 1
+
+  bottle do
+    sha256 "aa3f649b2495c9c76ea294b40810c8ad0c4eb24496776aa2356ead2e7cb85e4d" => :mojave
+    sha256 "9236f35ab82425be2754016c48956f301efec81a3cd3690c78f09c32b195e738" => :high_sierra
+    sha256 "04a6f5dbbdfa7c4766beccbf6b5245c1f8e642d679979e8aea2524350b339aac" => :sierra
+    sha256 "690b3803acd2d68d50f47ee14cb56e77a890a0532836b5ac58a71b666b8c7cd1" => :el_capitan
+  end
 
   keg_only :versioned_formula
 
@@ -264,11 +271,14 @@ class PhpAT70 < Formula
     <<~EOS
       To enable PHP in Apache add the following to httpd.conf and restart Apache:
           LoadModule php7_module #{opt_lib}/httpd/modules/libphp7.so
+
           <FilesMatch \\.php$>
               SetHandler application/x-httpd-php
           </FilesMatch>
+
       Finally, check DirectoryIndex includes index.php
           DirectoryIndex index.php index.html
+
       The php.ini and php-fpm.ini file can be found in:
           #{etc}/php/#{php_version}/
     EOS
@@ -465,6 +475,7 @@ index 168c465f8d..6c087d152f 100644
  dnl internal, don't use
 @@ -2411,7 +2419,8 @@ AC_DEFUN([PHP_SETUP_ICONV], [
      fi
+
      if test -f $ICONV_DIR/$PHP_LIBDIR/lib$iconv_lib_name.a ||
 -       test -f $ICONV_DIR/$PHP_LIBDIR/lib$iconv_lib_name.$SHLIB_SUFFIX_NAME
 +       test -f $ICONV_DIR/$PHP_LIBDIR/lib$iconv_lib_name.$SHLIB_SUFFIX_NAME ||
