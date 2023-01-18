@@ -2,7 +2,8 @@ class Stoker < Formula
   desc "D3R deployment management tools"
   homepage "https://github.com/D3R/stoker"
   url "http://d3r.assets.d3r.com/stoker.phar"
-  version "0.2.0"
+  head "http://d3r.assets.d3r.com/beta/stoker.phar"
+  version "1.0.0"
 
   depends_on "wget"
 
