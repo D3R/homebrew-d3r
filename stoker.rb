@@ -19,13 +19,14 @@ class Stoker < Formula
     system "stoker", "--version"
   end
 
-  def caveats; <<-EOS.undent
-    To get going run
+  def caveats;
+    <<~EOS
+      To get going run
 
       stoker self-update
       stoker config:setup
 
-    This will get you the latest version and set up your config.
+      This will get you the latest version and set up your config.
     EOS
   end
 end
