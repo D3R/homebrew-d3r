@@ -1,0 +1,14 @@
+name: homebrew-d3r
+id: ari:cloud:compass:99f81cd3-6055-4ddd-97a3-655f84dd430a:component/a6a6633a-8303-46fd-94f0-c5635a90b6ba/551e8a03-8a4c-41b3-aedb-740fa06866cb
+description: null
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links: []
+relationships:
+  DEPENDS_ON: []
+labels:
+  - language:ruby
+  - source:github
+customFields: null
